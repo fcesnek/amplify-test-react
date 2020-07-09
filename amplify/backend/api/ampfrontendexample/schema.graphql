@@ -1,0 +1,59 @@
+type Gym @model {
+  id: ID!
+  name: String!
+  location: String!
+  studio: [Studio] @connection(keyName: "byGym", fields: ["id"])
+}
+
+type Studio @model @key(name: "byGym", fields: ["gymID"]) {
+  id: ID!
+  title: String!
+  gymID: ID!
+  gym: Gym @connection(fields: ["gymID"])
+  devices: [Device] @connection(keyName: "byStudio", fields: ["id"])
+  sessions: [Session] @connection(keyName: "byStudio", fields: ["id"])
+}
+
+type Device @model @key(name: "byStudio", fields: ["studioID"]) {
+  id: ID!
+  studioID: ID!
+  studio: Studio @connection(fields: ["studioID"])
+  zoomMeet: ZoomMeet @connection
+}
+
+type Session
+  @model
+  @key(name: "byStudio", fields: ["studioID"]) {
+  id: ID!
+  studioID: ID!
+  studio: Studio @connection(fields: ["studioID"])
+  coachID: ID!
+  coach: Coach @connection(fields: ["coachID"])
+  clientID: ID!
+  client: Client @connection(fields: ["clientID"])
+  zoomMeetID: ID!
+  zoomMeet: ZoomMeet @connection(fields: ["zoomMeetID"])
+}
+
+type Coach @model {
+  id: ID!
+  name: String!
+}
+
+type Client @model {
+  id: ID!
+  name: String!
+}
+
+type ZoomMeet @model {
+  id: ID!
+  start_url: String!
+  join_url: String!
+  password: String!
+  createdAt: AWSDateTime
+  updatedAt: AWSDateTime
+}
+
+type Mutation {
+  createZoomMeetApi(topic: String): ZoomMeet @function(name: "createZoomMeetApiCall-${env}")
+}
