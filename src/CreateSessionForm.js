@@ -9,10 +9,7 @@ import {
   listStudios as ListStudios,
   listCoachs as ListCoaches,
   listClients as ListClients,
-  getStudio as GetStudio,
-  getStudio,
 } from './graphql/queries'
-import { onCreateSession } from './graphql/subscriptions';
 
 export default class CreateSessionForm extends React.Component {
   constructor(props) {
