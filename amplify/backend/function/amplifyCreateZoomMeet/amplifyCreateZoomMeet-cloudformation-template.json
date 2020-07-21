@@ -1,6 +1,6 @@
 {
 	"AWSTemplateFormatVersion": "2010-09-09",
-	"Description": "Lambda resource stack creation using Amplify CLI",
+	"Description": "Lambda Function resource stack creation using Amplify CLI",
 	"Parameters": {
 		"CloudWatchRule": {
 			"Type": "String",
@@ -65,10 +65,11 @@
 					]
 				},
 				"Runtime": "nodejs12.x",
+				"Layers": [],
 				"Timeout": "25",
 				"Code": {
-					"S3Bucket": "amplify-ampfrontendexample-dev-135802-deployment",
-					"S3Key": "amplify-builds/createZoomMeetApiCall-7a7735566a5753345671-build.zip"
+					"S3Bucket": "amplify-amplifymygym-dev-215517-deployment",
+					"S3Key": "amplify-builds/amplifyCreateZoomMeet-446e35614a4361693678-build.zip"
 				}
 			}
 		},
@@ -78,12 +79,12 @@
 				"RoleName": {
 					"Fn::If": [
 						"ShouldNotCreateEnvResources",
-						"ampfrontendexampleLambdaRole5ea06e1e",
+						"amplifymygymLambdaRole90e64d7c",
 						{
 							"Fn::Join": [
 								"",
 								[
-									"ampfrontendexampleLambdaRole5ea06e1e",
+									"amplifymygymLambdaRole90e64d7c",
 									"-",
 									{
 										"Ref": "env"

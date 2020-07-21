@@ -8,6 +8,13 @@ export const onCreateGym = /* GraphQL */ `
       name
       location
       studio {
+        items {
+          id
+          title
+          gymID
+          createdAt
+          updatedAt
+        }
         nextToken
       }
       createdAt
@@ -22,6 +29,13 @@ export const onUpdateGym = /* GraphQL */ `
       name
       location
       studio {
+        items {
+          id
+          title
+          gymID
+          createdAt
+          updatedAt
+        }
         nextToken
       }
       createdAt
@@ -36,6 +50,13 @@ export const onDeleteGym = /* GraphQL */ `
       name
       location
       studio {
+        items {
+          id
+          title
+          gymID
+          createdAt
+          updatedAt
+        }
         nextToken
       }
       createdAt
@@ -53,13 +74,33 @@ export const onCreateStudio = /* GraphQL */ `
         id
         name
         location
+        studio {
+          nextToken
+        }
         createdAt
         updatedAt
       }
       devices {
+        items {
+          id
+          studioID
+          createdAt
+          updatedAt
+        }
         nextToken
       }
       sessions {
+        items {
+          id
+          studioID
+          coachID
+          clientID
+          zoomMeetID
+          start_time
+          end_time
+          createdAt
+          updatedAt
+        }
         nextToken
       }
       createdAt
@@ -77,13 +118,33 @@ export const onUpdateStudio = /* GraphQL */ `
         id
         name
         location
+        studio {
+          nextToken
+        }
         createdAt
         updatedAt
       }
       devices {
+        items {
+          id
+          studioID
+          createdAt
+          updatedAt
+        }
         nextToken
       }
       sessions {
+        items {
+          id
+          studioID
+          coachID
+          clientID
+          zoomMeetID
+          start_time
+          end_time
+          createdAt
+          updatedAt
+        }
         nextToken
       }
       createdAt
@@ -101,13 +162,33 @@ export const onDeleteStudio = /* GraphQL */ `
         id
         name
         location
+        studio {
+          nextToken
+        }
         createdAt
         updatedAt
       }
       devices {
+        items {
+          id
+          studioID
+          createdAt
+          updatedAt
+        }
         nextToken
       }
       sessions {
+        items {
+          id
+          studioID
+          coachID
+          clientID
+          zoomMeetID
+          start_time
+          end_time
+          createdAt
+          updatedAt
+        }
         nextToken
       }
       createdAt
@@ -124,14 +205,30 @@ export const onCreateDevice = /* GraphQL */ `
         id
         title
         gymID
+        gym {
+          id
+          name
+          location
+          createdAt
+          updatedAt
+        }
+        devices {
+          nextToken
+        }
+        sessions {
+          nextToken
+        }
         createdAt
         updatedAt
       }
       zoomMeet {
         id
         start_url
+        topic
         join_url
         password
+        start_time
+        duration
         createdAt
         updatedAt
       }
@@ -149,14 +246,30 @@ export const onUpdateDevice = /* GraphQL */ `
         id
         title
         gymID
+        gym {
+          id
+          name
+          location
+          createdAt
+          updatedAt
+        }
+        devices {
+          nextToken
+        }
+        sessions {
+          nextToken
+        }
         createdAt
         updatedAt
       }
       zoomMeet {
         id
         start_url
+        topic
         join_url
         password
+        start_time
+        duration
         createdAt
         updatedAt
       }
@@ -174,14 +287,30 @@ export const onDeleteDevice = /* GraphQL */ `
         id
         title
         gymID
+        gym {
+          id
+          name
+          location
+          createdAt
+          updatedAt
+        }
+        devices {
+          nextToken
+        }
+        sessions {
+          nextToken
+        }
         createdAt
         updatedAt
       }
       zoomMeet {
         id
         start_url
+        topic
         join_url
         password
+        start_time
+        duration
         createdAt
         updatedAt
       }
@@ -199,6 +328,19 @@ export const onCreateSession = /* GraphQL */ `
         id
         title
         gymID
+        gym {
+          id
+          name
+          location
+          createdAt
+          updatedAt
+        }
+        devices {
+          nextToken
+        }
+        sessions {
+          nextToken
+        }
         createdAt
         updatedAt
       }
@@ -220,11 +362,16 @@ export const onCreateSession = /* GraphQL */ `
       zoomMeet {
         id
         start_url
+        topic
         join_url
         password
+        start_time
+        duration
         createdAt
         updatedAt
       }
+      start_time
+      end_time
       createdAt
       updatedAt
     }
@@ -239,6 +386,19 @@ export const onUpdateSession = /* GraphQL */ `
         id
         title
         gymID
+        gym {
+          id
+          name
+          location
+          createdAt
+          updatedAt
+        }
+        devices {
+          nextToken
+        }
+        sessions {
+          nextToken
+        }
         createdAt
         updatedAt
       }
@@ -260,11 +420,16 @@ export const onUpdateSession = /* GraphQL */ `
       zoomMeet {
         id
         start_url
+        topic
         join_url
         password
+        start_time
+        duration
         createdAt
         updatedAt
       }
+      start_time
+      end_time
       createdAt
       updatedAt
     }
@@ -279,6 +444,19 @@ export const onDeleteSession = /* GraphQL */ `
         id
         title
         gymID
+        gym {
+          id
+          name
+          location
+          createdAt
+          updatedAt
+        }
+        devices {
+          nextToken
+        }
+        sessions {
+          nextToken
+        }
         createdAt
         updatedAt
       }
@@ -300,11 +478,16 @@ export const onDeleteSession = /* GraphQL */ `
       zoomMeet {
         id
         start_url
+        topic
         join_url
         password
+        start_time
+        duration
         createdAt
         updatedAt
       }
+      start_time
+      end_time
       createdAt
       updatedAt
     }
@@ -375,8 +558,11 @@ export const onCreateZoomMeet = /* GraphQL */ `
     onCreateZoomMeet {
       id
       start_url
+      topic
       join_url
       password
+      start_time
+      duration
       createdAt
       updatedAt
     }
@@ -387,8 +573,11 @@ export const onUpdateZoomMeet = /* GraphQL */ `
     onUpdateZoomMeet {
       id
       start_url
+      topic
       join_url
       password
+      start_time
+      duration
       createdAt
       updatedAt
     }
@@ -399,8 +588,11 @@ export const onDeleteZoomMeet = /* GraphQL */ `
     onDeleteZoomMeet {
       id
       start_url
+      topic
       join_url
       password
+      start_time
+      duration
       createdAt
       updatedAt
     }

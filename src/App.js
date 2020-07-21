@@ -1,15 +1,11 @@
 import React from "react";
-import { withAuthenticator, AmplifyGreetings } from "@aws-amplify/ui-react";
+import { AmplifyAuthenticator, AmplifySignOut, AmplifySignUp } from '@aws-amplify/ui-react';
 import { API, graphqlOperation } from "aws-amplify";
+import "./App.css";
 
-import {
-  listSessions as ListSessions,
-  getStudio,
-} from "./graphql/queries";
+import { listSessions as ListSessions, getStudio, listDevices } from "./graphql/queries";
 
-import {
-  updateDevice as UpdateDevice,
-} from "./graphql/mutations";
+import { updateDevice as UpdateDevice } from "./graphql/mutations";
 
 import { onCreateSession } from "./graphql/subscriptions";
 
@@ -20,19 +16,23 @@ import CreateCoachForm from "./CreateCoachForm";
 import CreateClientForm from "./CreateClientForm";
 import CreateSessionForm from "./CreateSessionForm";
 
+import Authentication from "./Authentication";
+
 class App extends React.Component {
   // define some state to hold the data returned from the API
   state = {
     sessions: [],
+    devices: [],
   };
 
   // execute the query in componentDidMount
   async componentDidMount() {
     try {
       const sessionsData = await API.graphql(graphqlOperation(ListSessions));
-      console.log(sessionsData);
+      const devicesData = await API.graphql(graphqlOperation(listDevices));
       this.setState({
         sessions: sessionsData.data.listSessions.items,
+        devices: devicesData.data.listDevices.items,
       });
     } catch (err) {
       console.log("error fetching sessions...", err);
@@ -48,9 +48,10 @@ class App extends React.Component {
           try {
             const variables = {
               input: {
-                id: device.id, deviceZoomMeetId: eventData.value.data.onCreateSession.zoomMeetID
-              }
-            }
+                id: device.id,
+                deviceZoomMeetId: eventData.value.data.onCreateSession.zoomMeetID,
+              },
+            };
             await API.graphql(graphqlOperation(UpdateDevice, variables));
           } catch (err) {
             console.log(err);
@@ -61,33 +62,9 @@ class App extends React.Component {
   }
   render() {
     return (
-      <>
-        <AmplifyGreetings></AmplifyGreetings>
-        <CreateGymForm />
-        <br />
-        <CreateStudioForm />
-        <br />
-        <CreateDeviceForm />
-        <br />
-        <CreateCoachForm />
-        <br />
-        <CreateClientForm />
-        <br />
-        <CreateSessionForm />
-        {this.state.sessions.map((session, index) => (
-          <div key={index}>
-            <h3>Gym: {session.studio.gym.name}</h3>
-            <h3>Studio: {session.studio.title}</h3>
-            <h3>Coach: {session.coach.name}</h3>
-            <h3>Client: {session.client.name}</h3>
-            <h3>Zoom Meet</h3>
-            <h5>Start url: {session.zoomMeet.start_url}</h5>
-            <h5>Password: {session.zoomMeet.password}</h5>
-          </div>
-        ))}
-      </>
+      <Authentication />
     );
   }
 }
 
-export default withAuthenticator(App);
+export default App;

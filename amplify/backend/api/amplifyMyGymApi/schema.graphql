@@ -33,6 +33,8 @@ type Session
   client: Client @connection(fields: ["clientID"])
   zoomMeetID: ID!
   zoomMeet: ZoomMeet @connection(fields: ["zoomMeetID"])
+  start_time: AWSDateTime!
+  end_time: AWSDateTime!
 }
 
 type Coach @model {
@@ -48,12 +50,15 @@ type Client @model {
 type ZoomMeet @model {
   id: ID!
   start_url: String!
+  topic: String
   join_url: String!
   password: String!
+  start_time: AWSDateTime
+  duration: Int
   createdAt: AWSDateTime
   updatedAt: AWSDateTime
 }
 
 type Mutation {
-  createZoomMeetApi(topic: String): ZoomMeet @function(name: "createZoomMeetApiCall-${env}")
+  createZoomMeetApi(topic: String, start_time: AWSDateTime, duration: Int): ZoomMeet @function(name: "createZoomMeetApiCall-${env}")
 }

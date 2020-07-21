@@ -9,10 +9,10 @@ import {
   listStudios as ListStudios,
   listCoachs as ListCoaches,
   listClients as ListClients,
-  getStudio as GetStudio,
-  getStudio,
 } from './graphql/queries'
-import { onCreateSession } from './graphql/subscriptions';
+import DatePicker from "react-datepicker";
+ 
+import "react-datepicker/dist/react-datepicker.css";
 
 export default class CreateSessionForm extends React.Component {
   constructor(props) {
@@ -25,7 +25,9 @@ export default class CreateSessionForm extends React.Component {
       selectedCoach: '',
       selectedStudio: '',
       zoomMeet: {},
-      topic: ''
+      topic: '',
+      start_time: '',
+      end_time: ''
     }
   }
 
@@ -52,12 +54,32 @@ export default class CreateSessionForm extends React.Component {
     })
   }
 
+  handleStartChange = date => {
+    this.setState({
+      start_time: date
+    });
+  };
+
+  handleEndChange = date => {
+    this.setState({
+      end_time: date
+    });
+  };
+
   createSession = async() => {
-    const { selectedStudio, selectedCoach, selectedClient, topic } = this.state
+    const { selectedStudio, selectedCoach, selectedClient, topic, start_time, end_time } = this.state;
+    const duration = parseInt(Math.abs(end_time.getTime() - start_time.getTime()) / (1000 * 60) % 60);
+    
     if (selectedStudio === '' || selectedCoach === '' || selectedClient === '' || topic === '') return
     try {
-      const { join_url, password, start_url } = (await API.graphql(graphqlOperation(createZoomMeetApi, { topic }))).data.createZoomMeetApi;
-      const zoomMeetData = { join_url, password, start_url };
+      const zoomMeetApiData = (await API.graphql(graphqlOperation(createZoomMeetApi, { topic, start_time, duration }))).data.createZoomMeetApi;
+      const zoomMeetData = {
+        join_url: zoomMeetApiData.join_url,
+        password: zoomMeetApiData.password,
+        start_url: zoomMeetApiData.start_url,
+        start_time: zoomMeetApiData.start_time,
+        duration: zoomMeetApiData.duration
+      };
       const createdMeet = (await API.graphql(graphqlOperation(createZoomMeet, { input: zoomMeetData }))).data;
       this.setState({
         zoomMeet: createdMeet,
@@ -70,7 +92,7 @@ export default class CreateSessionForm extends React.Component {
     const { zoomMeet } = this.state;
     console.log("zmeet", zoomMeet)
 
-    const session = { studioID: selectedStudio, coachID: selectedCoach, clientID: selectedClient, zoomMeetID: zoomMeet.createZoomMeet.id }
+    const session = { studioID: selectedStudio, coachID: selectedCoach, clientID: selectedClient, zoomMeetID: zoomMeet.createZoomMeet.id, start_time, end_time }
     console.log("session?", session);
 
     try {
@@ -86,11 +108,14 @@ export default class CreateSessionForm extends React.Component {
       selectedCoach: '',
       selectedClient: '',
       topic: '',
-      zoomMeet: {}
+      zoomMeet: {},
+      start_time: '',
+      end_time: ''
     })
   }
 
   render() {
+    const { start_time, end_time } = this.state;
     return (
       <>
       <input
@@ -150,6 +175,20 @@ export default class CreateSessionForm extends React.Component {
             })
           }
         </datalist>
+        <DatePicker
+          selected={start_time}
+          onChange={this.handleStartChange}
+          showTimeSelect
+          placeholderText="Select starting time"
+          dateFormat="Pp"
+        />
+        <DatePicker
+          selected={end_time}
+          onChange={this.handleEndChange}
+          showTimeSelect
+          placeholderText="Select ending time"
+          dateFormat="Pp"
+        />
         <button onClick={this.createSession}>Create Session</button>
       </>
     );

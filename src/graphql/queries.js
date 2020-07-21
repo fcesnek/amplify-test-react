@@ -8,6 +8,13 @@ export const getGym = /* GraphQL */ `
       name
       location
       studio {
+        items {
+          id
+          title
+          gymID
+          createdAt
+          updatedAt
+        }
         nextToken
       }
       createdAt
@@ -26,6 +33,9 @@ export const listGyms = /* GraphQL */ `
         id
         name
         location
+        studio {
+          nextToken
+        }
         createdAt
         updatedAt
       }
@@ -43,16 +53,33 @@ export const getStudio = /* GraphQL */ `
         id
         name
         location
+        studio {
+          nextToken
+        }
         createdAt
         updatedAt
       }
       devices {
         items {
           id
+          studioID
+          createdAt
+          updatedAt
         }
         nextToken
       }
       sessions {
+        items {
+          id
+          studioID
+          coachID
+          clientID
+          zoomMeetID
+          start_time
+          end_time
+          createdAt
+          updatedAt
+        }
         nextToken
       }
       createdAt
@@ -71,6 +98,19 @@ export const listStudios = /* GraphQL */ `
         id
         title
         gymID
+        gym {
+          id
+          name
+          location
+          createdAt
+          updatedAt
+        }
+        devices {
+          nextToken
+        }
+        sessions {
+          nextToken
+        }
         createdAt
         updatedAt
       }
@@ -87,14 +127,30 @@ export const getDevice = /* GraphQL */ `
         id
         title
         gymID
+        gym {
+          id
+          name
+          location
+          createdAt
+          updatedAt
+        }
+        devices {
+          nextToken
+        }
+        sessions {
+          nextToken
+        }
         createdAt
         updatedAt
       }
       zoomMeet {
         id
         start_url
+        topic
         join_url
         password
+        start_time
+        duration
         createdAt
         updatedAt
       }
@@ -113,6 +169,24 @@ export const listDevices = /* GraphQL */ `
       items {
         id
         studioID
+        studio {
+          id
+          title
+          gymID
+          createdAt
+          updatedAt
+        }
+        zoomMeet {
+          id
+          start_url
+          topic
+          join_url
+          password
+          start_time
+          duration
+          createdAt
+          updatedAt
+        }
         createdAt
         updatedAt
       }
@@ -129,6 +203,19 @@ export const getSession = /* GraphQL */ `
         id
         title
         gymID
+        gym {
+          id
+          name
+          location
+          createdAt
+          updatedAt
+        }
+        devices {
+          nextToken
+        }
+        sessions {
+          nextToken
+        }
         createdAt
         updatedAt
       }
@@ -150,11 +237,16 @@ export const getSession = /* GraphQL */ `
       zoomMeet {
         id
         start_url
+        topic
         join_url
         password
+        start_time
+        duration
         createdAt
         updatedAt
       }
+      start_time
+      end_time
       createdAt
       updatedAt
     }
@@ -202,11 +294,16 @@ export const listSessions = /* GraphQL */ `
         zoomMeet {
           id
           start_url
+          topic
           join_url
           password
+          start_time
+          duration
           createdAt
           updatedAt
         }
+        start_time
+        end_time
         createdAt
         updatedAt
       }
@@ -273,8 +370,11 @@ export const getZoomMeet = /* GraphQL */ `
     getZoomMeet(id: $id) {
       id
       start_url
+      topic
       join_url
       password
+      start_time
+      duration
       createdAt
       updatedAt
     }
@@ -290,8 +390,11 @@ export const listZoomMeets = /* GraphQL */ `
       items {
         id
         start_url
+        topic
         join_url
         password
+        start_time
+        duration
         createdAt
         updatedAt
       }

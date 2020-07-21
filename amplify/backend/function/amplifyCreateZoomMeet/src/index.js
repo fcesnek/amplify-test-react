@@ -10,16 +10,19 @@ exports.handler = function (event, _, callback) {
     exp: ((new Date()).getTime() + 5000)
   };
   const token = jwt.sign(payload, config.APISecret);
-  const { topic } = event.arguments;
+  const { topic, start_time, duration } = event.arguments;
   const options = {
     method: "POST",
     uri: "https://api.zoom.us/v2/users/" + email + "/meetings",
     body: {
       topic,
-      type: 1,
+      type: 2,
+      start_time,
+      duration,
       settings: {
         host_video: "true",
-        participant_video: "true"
+        participant_video: "true",
+        mute_upon_entry: "true"
       }
     },
     auth: {
