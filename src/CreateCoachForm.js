@@ -1,7 +1,7 @@
 import React from 'react';
 import { API, graphqlOperation } from 'aws-amplify'
 import {
-  createCoach as CreateCoach,
+  createUser as CreateUser,
 } from './graphql/mutations'
 
 export default class CreateCoachForm extends React.Component {
@@ -26,7 +26,7 @@ export default class CreateCoachForm extends React.Component {
     })
 
     try {
-      await API.graphql(graphqlOperation(CreateCoach, { input: coach }))
+      await API.graphql(graphqlOperation(CreateUser, { input: coach }))
       console.log('item created!')
     } catch (err) {
       console.log('error creating coach...', err)

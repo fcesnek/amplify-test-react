@@ -1,7 +1,7 @@
 import React from 'react';
 import { API, graphqlOperation } from 'aws-amplify'
 import {
-  createClient as CreateClient,
+  createUser as CreateUser,
 } from './graphql/mutations'
 
 export default class CreateClientForm extends React.Component {
@@ -26,7 +26,7 @@ export default class CreateClientForm extends React.Component {
     })
 
     try {
-      await API.graphql(graphqlOperation(CreateClient, { input: client }))
+      await API.graphql(graphqlOperation(CreateUser, { input: client }))
       console.log('item created!')
     } catch (err) {
       console.log('error creating client...', err)

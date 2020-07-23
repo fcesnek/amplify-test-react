@@ -28,23 +28,87 @@ type Session
   studioID: ID!
   studio: Studio @connection(fields: ["studioID"])
   coachID: ID!
-  coach: Coach @connection(fields: ["coachID"])
+  coach: User @connection(fields: ["coachID"])
   clientID: ID!
-  client: Client @connection(fields: ["clientID"])
+  client: User @connection(fields: ["clientID"])
   zoomMeetID: ID!
   zoomMeet: ZoomMeet @connection(fields: ["zoomMeetID"])
   start_time: AWSDateTime!
   end_time: AWSDateTime!
 }
 
-type Coach @model {
+type User @model {
   id: ID!
-  name: String!
+  username: String!
+  email: String!
+  userGroup: String!
+  intakeFormDetails: IntakeFormDetails
 }
 
-type Client @model {
-  id: ID!
-  name: String!
+type IntakeFormDetails {
+  personalDetails: PersonalDetails
+  exerciseHistory: ExerciseHistory
+  medicalHistory: MedicalHistory
+  behavioralQuestions: BehavioralQuestions
+  trainerPreferences: TrainerPreferences
+}
+
+type TrainerPreferences {
+  language: String
+  trainerSex: String
+  coachPersonality: String
+}
+
+type BehavioralQuestions {
+  barrierToExercise: String
+  confidenceToOvercomeBarrier: Rating
+  friendAndFamilySupport: Rating
+  exerciseImportance: Rating
+  motivation: Rating
+  resultsExpectation: Rating
+}
+
+type MedicalHistory {
+  hasMedicalConditions: Boolean
+  toldToLimitActivity: ActivityLimit
+  injuries: Boolean
+  surgeries: Boolean
+  chronicDisease: Boolean
+  medications: Boolean
+}
+
+type ActivityLimit {
+  hasBeenToldToLimitActivity: Boolean
+  reasonForActivityLimit: String
+}
+
+type ExerciseHistory {
+  exerciseImportance: Rating
+  weeklyExercise: Rating
+  ageOfMostConsistency: Int
+  athleticismLevel: Rating
+  exercisePrograms: [String]
+  wantedExerciseAchievements: [String]
+  confidenceToAchieveGoals: Rating
+}
+
+enum Rating {
+  VERY_LOW
+  LOW
+  MEDIUM
+  HIGH
+  VERY_HIGH
+}
+
+type PersonalDetails {
+  fullName: String
+  dateOfBirth: String
+  height: String
+  weight: Int
+  sex: String
+  phoneNumber: String
+  emergencyContactName: String
+  emergencyContactNumber: String
 }
 
 type ZoomMeet @model {

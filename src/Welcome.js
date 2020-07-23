@@ -1,9 +1,8 @@
 import React from "react";
-import { AmplifyAuthenticator, AmplifySignOut, AmplifySignUp } from '@aws-amplify/ui-react';
 import { API, graphqlOperation } from "aws-amplify";
 import "./App.css";
 import { Auth } from "aws-amplify";
-import { listSessions as ListSessions, getStudio, listDevices } from "./graphql/queries";
+import { listSessions as ListSessions, getStudio, listDevices, listUsers } from "./graphql/queries";
 
 import { updateDevice as UpdateDevice } from "./graphql/mutations";
 
@@ -12,8 +11,6 @@ import { onCreateSession } from "./graphql/subscriptions";
 import CreateGymForm from "./CreateGymForm";
 import CreateStudioForm from "./CreateStudioForm";
 import CreateDeviceForm from "./CreateDeviceForm";
-import CreateCoachForm from "./CreateCoachForm";
-import CreateClientForm from "./CreateClientForm";
 import CreateSessionForm from "./CreateSessionForm";
 
 class App extends React.Component {
@@ -27,8 +24,10 @@ class App extends React.Component {
   // execute the query in componentDidMount
   async componentDidMount() {
     try {
-      const sessionsData = await API.graphql(graphqlOperation(ListSessions));
-      const devicesData = await API.graphql(graphqlOperation(listDevices));
+      //const sessionsData = await API.graphql(graphqlOperation(ListSessions));
+      //const devicesData = await API.graphql(graphqlOperation(listDevices));
+      const usersData = await API.graphql(graphqlOperation(listUsers));
+      console.log("users", usersData);
       Auth.currentAuthenticatedUser({
         bypassCache: true // Optional, By default is false. If set to true, this call will send a request to Cognito to get the latest user data
       })
@@ -38,10 +37,10 @@ class App extends React.Component {
           console.log("user", this.state.user);
         })
         .catch(err => console.log(err));
-      this.setState({
-        sessions: sessionsData.data.listSessions.items,
-        devices: devicesData.data.listDevices.items,
-      });
+      // this.setState({
+      //   sessions: sessionsData.data.listSessions.items,
+      //   devices: devicesData.data.listDevices.items,
+      // });
     } catch (err) {
       console.log("error fetching sessions...", err);
     }
@@ -95,14 +94,6 @@ class App extends React.Component {
               <CreateDeviceForm />
               <br />
             </div>
-          </div>
-          <div class="column">
-            <div className="center">
-              <CreateCoachForm />
-              <br />
-              <CreateClientForm />
-            </div>
-            <br />
           </div>
         </div>
         <div className="session">

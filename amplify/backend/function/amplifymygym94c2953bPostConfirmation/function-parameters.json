@@ -13,5 +13,16 @@
   "roleName": "amplifymygym94c2953bPostConfirmation",
   "skipEdit": true,
   "GROUP": "",
-  "lambdaLayers": []
+  "lambdaLayers": [],
+  "mutableParametersState": {
+    "permissions": {
+      "storage": {
+        "User:@model(appsync)": [
+          "create",
+          "read",
+          "update"
+        ]
+      }
+    }
+  }
 }

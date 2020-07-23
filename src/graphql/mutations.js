@@ -400,14 +400,18 @@ export const createSession = /* GraphQL */ `
       coachID
       coach {
         id
-        name
+        username
+        email
+        userGroup
         createdAt
         updatedAt
       }
       clientID
       client {
         id
-        name
+        username
+        email
+        userGroup
         createdAt
         updatedAt
       }
@@ -461,14 +465,18 @@ export const updateSession = /* GraphQL */ `
       coachID
       coach {
         id
-        name
+        username
+        email
+        userGroup
         createdAt
         updatedAt
       }
       clientID
       client {
         id
-        name
+        username
+        email
+        userGroup
         createdAt
         updatedAt
       }
@@ -522,14 +530,18 @@ export const deleteSession = /* GraphQL */ `
       coachID
       coach {
         id
-        name
+        username
+        email
+        userGroup
         createdAt
         updatedAt
       }
       clientID
       client {
         id
-        name
+        username
+        email
+        userGroup
         createdAt
         updatedAt
       }
@@ -552,79 +564,169 @@ export const deleteSession = /* GraphQL */ `
     }
   }
 `;
-export const createCoach = /* GraphQL */ `
-  mutation CreateCoach(
-    $input: CreateCoachInput!
-    $condition: ModelCoachConditionInput
+export const createUser = /* GraphQL */ `
+  mutation CreateUser(
+    $input: CreateUserInput!
+    $condition: ModelUserConditionInput
   ) {
-    createCoach(input: $input, condition: $condition) {
+    createUser(input: $input, condition: $condition) {
       id
-      name
+      username
+      email
+      userGroup
+      intakeFormDetails {
+        personalDetails {
+          fullName
+          dateOfBirth
+          height
+          weight
+          sex
+          phoneNumber
+          emergencyContactName
+          emergencyContactNumber
+        }
+        exerciseHistory {
+          exerciseImportance
+          weeklyExercise
+          ageOfMostConsistency
+          athleticismLevel
+          exercisePrograms
+          wantedExerciseAchievements
+          confidenceToAchieveGoals
+        }
+        medicalHistory {
+          hasMedicalConditions
+          injuries
+          surgeries
+          chronicDisease
+          medications
+        }
+        behavioralQuestions {
+          barrierToExercise
+          confidenceToOvercomeBarrier
+          friendAndFamilySupport
+          exerciseImportance
+          motivation
+          resultsExpectation
+        }
+        trainerPreferences {
+          language
+          trainerSex
+          coachPersonality
+        }
+      }
       createdAt
       updatedAt
     }
   }
 `;
-export const updateCoach = /* GraphQL */ `
-  mutation UpdateCoach(
-    $input: UpdateCoachInput!
-    $condition: ModelCoachConditionInput
+export const updateUser = /* GraphQL */ `
+  mutation UpdateUser(
+    $input: UpdateUserInput!
+    $condition: ModelUserConditionInput
   ) {
-    updateCoach(input: $input, condition: $condition) {
+    updateUser(input: $input, condition: $condition) {
       id
-      name
+      username
+      email
+      userGroup
+      intakeFormDetails {
+        personalDetails {
+          fullName
+          dateOfBirth
+          height
+          weight
+          sex
+          phoneNumber
+          emergencyContactName
+          emergencyContactNumber
+        }
+        exerciseHistory {
+          exerciseImportance
+          weeklyExercise
+          ageOfMostConsistency
+          athleticismLevel
+          exercisePrograms
+          wantedExerciseAchievements
+          confidenceToAchieveGoals
+        }
+        medicalHistory {
+          hasMedicalConditions
+          injuries
+          surgeries
+          chronicDisease
+          medications
+        }
+        behavioralQuestions {
+          barrierToExercise
+          confidenceToOvercomeBarrier
+          friendAndFamilySupport
+          exerciseImportance
+          motivation
+          resultsExpectation
+        }
+        trainerPreferences {
+          language
+          trainerSex
+          coachPersonality
+        }
+      }
       createdAt
       updatedAt
     }
   }
 `;
-export const deleteCoach = /* GraphQL */ `
-  mutation DeleteCoach(
-    $input: DeleteCoachInput!
-    $condition: ModelCoachConditionInput
+export const deleteUser = /* GraphQL */ `
+  mutation DeleteUser(
+    $input: DeleteUserInput!
+    $condition: ModelUserConditionInput
   ) {
-    deleteCoach(input: $input, condition: $condition) {
+    deleteUser(input: $input, condition: $condition) {
       id
-      name
-      createdAt
-      updatedAt
-    }
-  }
-`;
-export const createClient = /* GraphQL */ `
-  mutation CreateClient(
-    $input: CreateClientInput!
-    $condition: ModelClientConditionInput
-  ) {
-    createClient(input: $input, condition: $condition) {
-      id
-      name
-      createdAt
-      updatedAt
-    }
-  }
-`;
-export const updateClient = /* GraphQL */ `
-  mutation UpdateClient(
-    $input: UpdateClientInput!
-    $condition: ModelClientConditionInput
-  ) {
-    updateClient(input: $input, condition: $condition) {
-      id
-      name
-      createdAt
-      updatedAt
-    }
-  }
-`;
-export const deleteClient = /* GraphQL */ `
-  mutation DeleteClient(
-    $input: DeleteClientInput!
-    $condition: ModelClientConditionInput
-  ) {
-    deleteClient(input: $input, condition: $condition) {
-      id
-      name
+      username
+      email
+      userGroup
+      intakeFormDetails {
+        personalDetails {
+          fullName
+          dateOfBirth
+          height
+          weight
+          sex
+          phoneNumber
+          emergencyContactName
+          emergencyContactNumber
+        }
+        exerciseHistory {
+          exerciseImportance
+          weeklyExercise
+          ageOfMostConsistency
+          athleticismLevel
+          exercisePrograms
+          wantedExerciseAchievements
+          confidenceToAchieveGoals
+        }
+        medicalHistory {
+          hasMedicalConditions
+          injuries
+          surgeries
+          chronicDisease
+          medications
+        }
+        behavioralQuestions {
+          barrierToExercise
+          confidenceToOvercomeBarrier
+          friendAndFamilySupport
+          exerciseImportance
+          motivation
+          resultsExpectation
+        }
+        trainerPreferences {
+          language
+          trainerSex
+          coachPersonality
+        }
+      }
       createdAt
       updatedAt
     }

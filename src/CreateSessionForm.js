@@ -7,8 +7,7 @@ import {
 } from './graphql/mutations'
 import {
   listStudios as ListStudios,
-  listCoachs as ListCoaches,
-  listClients as ListClients,
+  listUsers as ListUsers,
 } from './graphql/queries'
 import DatePicker from "react-datepicker";
  
@@ -34,12 +33,12 @@ export default class CreateSessionForm extends React.Component {
   async componentDidMount() {
     try {
       const studiosData = await API.graphql(graphqlOperation(ListStudios))
-      const coachesData = await API.graphql(graphqlOperation(ListCoaches))
-      const clientsData = await API.graphql(graphqlOperation(ListClients))
+      const coachesData = await API.graphql(graphqlOperation(ListUsers))
+      const clientsData = await API.graphql(graphqlOperation(ListUsers))
       this.setState({
         studios: studiosData.data.listStudios.items,
-        coaches: coachesData.data.listCoachs.items,
-        clients: clientsData.data.listClients.items,
+        coaches: coachesData.data.listUsers.items,
+        clients: clientsData.data.listUsers.items,
       })
 
       console.log('state:', this.state)

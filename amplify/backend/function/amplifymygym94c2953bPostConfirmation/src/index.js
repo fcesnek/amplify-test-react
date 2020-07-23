@@ -1,4 +1,10 @@
-/*
+/* Amplify Params - DO NOT EDIT
+	API_AMPLIFYMYGYMAPI_GRAPHQLAPIIDOUTPUT
+	API_AMPLIFYMYGYMAPI_USERTABLE_ARN
+	API_AMPLIFYMYGYMAPI_USERTABLE_NAME
+	ENV
+	REGION
+Amplify Params - DO NOT EDIT *//*
   this file will loop through all js modules which are uploaded to the lambda resource,
   provided that the file names (without extension) are included in the "MODULES" env variable.
   "MODULES" is a comma-delimmited string.

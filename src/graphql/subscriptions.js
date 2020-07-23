@@ -347,14 +347,18 @@ export const onCreateSession = /* GraphQL */ `
       coachID
       coach {
         id
-        name
+        username
+        email
+        userGroup
         createdAt
         updatedAt
       }
       clientID
       client {
         id
-        name
+        username
+        email
+        userGroup
         createdAt
         updatedAt
       }
@@ -405,14 +409,18 @@ export const onUpdateSession = /* GraphQL */ `
       coachID
       coach {
         id
-        name
+        username
+        email
+        userGroup
         createdAt
         updatedAt
       }
       clientID
       client {
         id
-        name
+        username
+        email
+        userGroup
         createdAt
         updatedAt
       }
@@ -463,14 +471,18 @@ export const onDeleteSession = /* GraphQL */ `
       coachID
       coach {
         id
-        name
+        username
+        email
+        userGroup
         createdAt
         updatedAt
       }
       clientID
       client {
         id
-        name
+        username
+        email
+        userGroup
         createdAt
         updatedAt
       }
@@ -493,61 +505,160 @@ export const onDeleteSession = /* GraphQL */ `
     }
   }
 `;
-export const onCreateCoach = /* GraphQL */ `
-  subscription OnCreateCoach {
-    onCreateCoach {
+export const onCreateUser = /* GraphQL */ `
+  subscription OnCreateUser {
+    onCreateUser {
       id
-      name
+      username
+      email
+      userGroup
+      intakeFormDetails {
+        personalDetails {
+          fullName
+          dateOfBirth
+          height
+          weight
+          sex
+          phoneNumber
+          emergencyContactName
+          emergencyContactNumber
+        }
+        exerciseHistory {
+          exerciseImportance
+          weeklyExercise
+          ageOfMostConsistency
+          athleticismLevel
+          exercisePrograms
+          wantedExerciseAchievements
+          confidenceToAchieveGoals
+        }
+        medicalHistory {
+          hasMedicalConditions
+          injuries
+          surgeries
+          chronicDisease
+          medications
+        }
+        behavioralQuestions {
+          barrierToExercise
+          confidenceToOvercomeBarrier
+          friendAndFamilySupport
+          exerciseImportance
+          motivation
+          resultsExpectation
+        }
+        trainerPreferences {
+          language
+          trainerSex
+          coachPersonality
+        }
+      }
       createdAt
       updatedAt
     }
   }
 `;
-export const onUpdateCoach = /* GraphQL */ `
-  subscription OnUpdateCoach {
-    onUpdateCoach {
+export const onUpdateUser = /* GraphQL */ `
+  subscription OnUpdateUser {
+    onUpdateUser {
       id
-      name
+      username
+      email
+      userGroup
+      intakeFormDetails {
+        personalDetails {
+          fullName
+          dateOfBirth
+          height
+          weight
+          sex
+          phoneNumber
+          emergencyContactName
+          emergencyContactNumber
+        }
+        exerciseHistory {
+          exerciseImportance
+          weeklyExercise
+          ageOfMostConsistency
+          athleticismLevel
+          exercisePrograms
+          wantedExerciseAchievements
+          confidenceToAchieveGoals
+        }
+        medicalHistory {
+          hasMedicalConditions
+          injuries
+          surgeries
+          chronicDisease
+          medications
+        }
+        behavioralQuestions {
+          barrierToExercise
+          confidenceToOvercomeBarrier
+          friendAndFamilySupport
+          exerciseImportance
+          motivation
+          resultsExpectation
+        }
+        trainerPreferences {
+          language
+          trainerSex
+          coachPersonality
+        }
+      }
       createdAt
       updatedAt
     }
   }
 `;
-export const onDeleteCoach = /* GraphQL */ `
-  subscription OnDeleteCoach {
-    onDeleteCoach {
+export const onDeleteUser = /* GraphQL */ `
+  subscription OnDeleteUser {
+    onDeleteUser {
       id
-      name
-      createdAt
-      updatedAt
-    }
-  }
-`;
-export const onCreateClient = /* GraphQL */ `
-  subscription OnCreateClient {
-    onCreateClient {
-      id
-      name
-      createdAt
-      updatedAt
-    }
-  }
-`;
-export const onUpdateClient = /* GraphQL */ `
-  subscription OnUpdateClient {
-    onUpdateClient {
-      id
-      name
-      createdAt
-      updatedAt
-    }
-  }
-`;
-export const onDeleteClient = /* GraphQL */ `
-  subscription OnDeleteClient {
-    onDeleteClient {
-      id
-      name
+      username
+      email
+      userGroup
+      intakeFormDetails {
+        personalDetails {
+          fullName
+          dateOfBirth
+          height
+          weight
+          sex
+          phoneNumber
+          emergencyContactName
+          emergencyContactNumber
+        }
+        exerciseHistory {
+          exerciseImportance
+          weeklyExercise
+          ageOfMostConsistency
+          athleticismLevel
+          exercisePrograms
+          wantedExerciseAchievements
+          confidenceToAchieveGoals
+        }
+        medicalHistory {
+          hasMedicalConditions
+          injuries
+          surgeries
+          chronicDisease
+          medications
+        }
+        behavioralQuestions {
+          barrierToExercise
+          confidenceToOvercomeBarrier
+          friendAndFamilySupport
+          exerciseImportance
+          motivation
+          resultsExpectation
+        }
+        trainerPreferences {
+          language
+          trainerSex
+          coachPersonality
+        }
+      }
       createdAt
       updatedAt
     }

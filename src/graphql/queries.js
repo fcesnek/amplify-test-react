@@ -222,14 +222,18 @@ export const getSession = /* GraphQL */ `
       coachID
       coach {
         id
-        name
+        username
+        email
+        userGroup
         createdAt
         updatedAt
       }
       clientID
       client {
         id
-        name
+        username
+        email
+        userGroup
         createdAt
         updatedAt
       }
@@ -266,27 +270,24 @@ export const listSessions = /* GraphQL */ `
           id
           title
           gymID
-          gym {
-            id
-            name
-            location
-            createdAt
-            updatedAt
-          }
           createdAt
           updatedAt
         }
         coachID
         coach {
           id
-          name
+          username
+          email
+          userGroup
           createdAt
           updatedAt
         }
         clientID
         client {
           id
-          name
+          username
+          email
+          userGroup
           createdAt
           updatedAt
         }
@@ -311,53 +312,116 @@ export const listSessions = /* GraphQL */ `
     }
   }
 `;
-export const getCoach = /* GraphQL */ `
-  query GetCoach($id: ID!) {
-    getCoach(id: $id) {
+export const getUser = /* GraphQL */ `
+  query GetUser($id: ID!) {
+    getUser(id: $id) {
       id
-      name
-      createdAt
-      updatedAt
-    }
-  }
-`;
-export const listCoachs = /* GraphQL */ `
-  query ListCoachs(
-    $filter: ModelCoachFilterInput
-    $limit: Int
-    $nextToken: String
-  ) {
-    listCoachs(filter: $filter, limit: $limit, nextToken: $nextToken) {
-      items {
-        id
-        name
-        createdAt
-        updatedAt
+      username
+      email
+      userGroup
+      intakeFormDetails {
+        personalDetails {
+          fullName
+          dateOfBirth
+          height
+          weight
+          sex
+          phoneNumber
+          emergencyContactName
+          emergencyContactNumber
+        }
+        exerciseHistory {
+          exerciseImportance
+          weeklyExercise
+          ageOfMostConsistency
+          athleticismLevel
+          exercisePrograms
+          wantedExerciseAchievements
+          confidenceToAchieveGoals
+        }
+        medicalHistory {
+          hasMedicalConditions
+          injuries
+          surgeries
+          chronicDisease
+          medications
+        }
+        behavioralQuestions {
+          barrierToExercise
+          confidenceToOvercomeBarrier
+          friendAndFamilySupport
+          exerciseImportance
+          motivation
+          resultsExpectation
+        }
+        trainerPreferences {
+          language
+          trainerSex
+          coachPersonality
+        }
       }
-      nextToken
-    }
-  }
-`;
-export const getClient = /* GraphQL */ `
-  query GetClient($id: ID!) {
-    getClient(id: $id) {
-      id
-      name
       createdAt
       updatedAt
     }
   }
 `;
-export const listClients = /* GraphQL */ `
-  query ListClients(
-    $filter: ModelClientFilterInput
+export const listUsers = /* GraphQL */ `
+  query ListUsers(
+    $filter: ModelUserFilterInput
     $limit: Int
     $nextToken: String
   ) {
-    listClients(filter: $filter, limit: $limit, nextToken: $nextToken) {
+    listUsers(filter: $filter, limit: $limit, nextToken: $nextToken) {
       items {
         id
-        name
+        username
+        email
+        userGroup
+        intakeFormDetails {
+          personalDetails {
+            fullName
+            dateOfBirth
+            height
+            weight
+            sex
+            phoneNumber
+            emergencyContactName
+            emergencyContactNumber
+          }
+          exerciseHistory {
+            exerciseImportance
+            weeklyExercise
+            ageOfMostConsistency
+            athleticismLevel
+            exercisePrograms
+            wantedExerciseAchievements
+            confidenceToAchieveGoals
+          }
+          medicalHistory {
+            hasMedicalConditions
+            toldToLimitActivity {
+              hasBeenToldToLimitActivity
+              reasonForActivityLimit
+            }
+            injuries
+            surgeries
+            chronicDisease
+            medications
+          }
+          behavioralQuestions {
+            barrierToExercise
+            confidenceToOvercomeBarrier
+            friendAndFamilySupport
+            exerciseImportance
+            motivation
+            resultsExpectation
+          }
+          trainerPreferences {
+            language
+            trainerSex
+            coachPersonality
+          }
+        }
         createdAt
         updatedAt
       }
