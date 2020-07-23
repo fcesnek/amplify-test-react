@@ -520,6 +520,7 @@ export const onCreateUser = /* GraphQL */ `
           weight
           sex
           phoneNumber
+          email
           emergencyContactName
           emergencyContactNumber
         }
@@ -531,13 +532,6 @@ export const onCreateUser = /* GraphQL */ `
           exercisePrograms
           wantedExerciseAchievements
           confidenceToAchieveGoals
-        }
-        medicalHistory {
-          hasMedicalConditions
-          injuries
-          surgeries
-          chronicDisease
-          medications
         }
         behavioralQuestions {
           barrierToExercise
@@ -573,6 +567,7 @@ export const onUpdateUser = /* GraphQL */ `
           weight
           sex
           phoneNumber
+          email
           emergencyContactName
           emergencyContactNumber
         }
@@ -584,13 +579,6 @@ export const onUpdateUser = /* GraphQL */ `
           exercisePrograms
           wantedExerciseAchievements
           confidenceToAchieveGoals
-        }
-        medicalHistory {
-          hasMedicalConditions
-          injuries
-          surgeries
-          chronicDisease
-          medications
         }
         behavioralQuestions {
           barrierToExercise
@@ -626,6 +614,7 @@ export const onDeleteUser = /* GraphQL */ `
           weight
           sex
           phoneNumber
+          email
           emergencyContactName
           emergencyContactNumber
         }
@@ -637,13 +626,6 @@ export const onDeleteUser = /* GraphQL */ `
           exercisePrograms
           wantedExerciseAchievements
           confidenceToAchieveGoals
-        }
-        medicalHistory {
-          hasMedicalConditions
-          injuries
-          surgeries
-          chronicDisease
-          medications
         }
         behavioralQuestions {
           barrierToExercise

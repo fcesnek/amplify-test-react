@@ -65,26 +65,26 @@ type BehavioralQuestions {
   friendAndFamilySupport: Rating
   exerciseImportance: Rating
   motivation: Rating
-  resultsExpectation: Rating
+  resultsExpectation: String
 }
 
 type MedicalHistory {
-  hasMedicalConditions: Boolean
-  toldToLimitActivity: ActivityLimit
-  injuries: Boolean
-  surgeries: Boolean
-  chronicDisease: Boolean
-  medications: Boolean
+  hasMedicalConditions: QuestionReason
+  toldToLimitActivity: QuestionReason
+  injuries: QuestionReason
+  surgeries: QuestionReason
+  chronicDisease: QuestionReason
+  medications: QuestionReason
 }
 
-type ActivityLimit {
-  hasBeenToldToLimitActivity: Boolean
-  reasonForActivityLimit: String
+type QuestionReason {
+  isQuestionTrue: Boolean
+  reason: String
 }
 
 type ExerciseHistory {
   exerciseImportance: Rating
-  weeklyExercise: Rating
+  weeklyExercise: String
   ageOfMostConsistency: Int
   athleticismLevel: Rating
   exercisePrograms: [String]
@@ -107,6 +107,7 @@ type PersonalDetails {
   weight: Int
   sex: String
   phoneNumber: String
+  email: String
   emergencyContactName: String
   emergencyContactNumber: String
 }

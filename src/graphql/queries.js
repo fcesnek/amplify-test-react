@@ -327,6 +327,7 @@ export const getUser = /* GraphQL */ `
           weight
           sex
           phoneNumber
+          email
           emergencyContactName
           emergencyContactNumber
         }
@@ -338,13 +339,6 @@ export const getUser = /* GraphQL */ `
           exercisePrograms
           wantedExerciseAchievements
           confidenceToAchieveGoals
-        }
-        medicalHistory {
-          hasMedicalConditions
-          injuries
-          surgeries
-          chronicDisease
-          medications
         }
         behavioralQuestions {
           barrierToExercise
@@ -377,51 +371,6 @@ export const listUsers = /* GraphQL */ `
         username
         email
         userGroup
-        intakeFormDetails {
-          personalDetails {
-            fullName
-            dateOfBirth
-            height
-            weight
-            sex
-            phoneNumber
-            emergencyContactName
-            emergencyContactNumber
-          }
-          exerciseHistory {
-            exerciseImportance
-            weeklyExercise
-            ageOfMostConsistency
-            athleticismLevel
-            exercisePrograms
-            wantedExerciseAchievements
-            confidenceToAchieveGoals
-          }
-          medicalHistory {
-            hasMedicalConditions
-            toldToLimitActivity {
-              hasBeenToldToLimitActivity
-              reasonForActivityLimit
-            }
-            injuries
-            surgeries
-            chronicDisease
-            medications
-          }
-          behavioralQuestions {
-            barrierToExercise
-            confidenceToOvercomeBarrier
-            friendAndFamilySupport
-            exerciseImportance
-            motivation
-            resultsExpectation
-          }
-          trainerPreferences {
-            language
-            trainerSex
-            coachPersonality
-          }
-        }
         createdAt
         updatedAt
       }
