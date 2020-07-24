@@ -72,6 +72,7 @@ export const getStudio = /* GraphQL */ `
         items {
           id
           title
+          isCanceled
           studioID
           coachID
           clientID
@@ -200,6 +201,7 @@ export const getSession = /* GraphQL */ `
     getSession(id: $id) {
       id
       title
+      isCanceled
       studioID
       studio {
         id
@@ -247,6 +249,17 @@ export const getSession = /* GraphQL */ `
         username
         email
         userGroup
+        profileInformation {
+          firstName
+          lastName
+          emailAddress
+          contactNumber
+          coachRate
+          cancellationRate
+          about
+          languages
+          skills
+        }
         createdAt
         updatedAt
       }
@@ -279,6 +292,7 @@ export const listSessions = /* GraphQL */ `
       items {
         id
         title
+        isCanceled
         studioID
         studio {
           id

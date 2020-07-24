@@ -128,6 +128,7 @@ export const createStudio = /* GraphQL */ `
         items {
           id
           title
+          isCanceled
           studioID
           coachID
           clientID
@@ -176,6 +177,7 @@ export const updateStudio = /* GraphQL */ `
         items {
           id
           title
+          isCanceled
           studioID
           coachID
           clientID
@@ -224,6 +226,7 @@ export const deleteStudio = /* GraphQL */ `
         items {
           id
           title
+          isCanceled
           studioID
           coachID
           clientID
@@ -380,6 +383,7 @@ export const createSession = /* GraphQL */ `
     createSession(input: $input, condition: $condition) {
       id
       title
+      isCanceled
       studioID
       studio {
         id
@@ -468,6 +472,7 @@ export const updateSession = /* GraphQL */ `
     updateSession(input: $input, condition: $condition) {
       id
       title
+      isCanceled
       studioID
       studio {
         id
@@ -556,6 +561,7 @@ export const deleteSession = /* GraphQL */ `
     deleteSession(input: $input, condition: $condition) {
       id
       title
+      isCanceled
       studioID
       studio {
         id

@@ -26,6 +26,7 @@ type Session
   @key(name: "byStudio", fields: ["studioID"]) {
   id: ID!
   title: String
+  isCanceled: Boolean
   studioID: ID!
   studio: Studio @connection(fields: ["studioID"])
   coachID: ID!

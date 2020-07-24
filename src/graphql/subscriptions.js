@@ -93,6 +93,7 @@ export const onCreateStudio = /* GraphQL */ `
         items {
           id
           title
+          isCanceled
           studioID
           coachID
           clientID
@@ -138,6 +139,7 @@ export const onUpdateStudio = /* GraphQL */ `
         items {
           id
           title
+          isCanceled
           studioID
           coachID
           clientID
@@ -183,6 +185,7 @@ export const onDeleteStudio = /* GraphQL */ `
         items {
           id
           title
+          isCanceled
           studioID
           coachID
           clientID
@@ -327,6 +330,7 @@ export const onCreateSession = /* GraphQL */ `
     onCreateSession {
       id
       title
+      isCanceled
       studioID
       studio {
         id
@@ -412,6 +416,7 @@ export const onUpdateSession = /* GraphQL */ `
     onUpdateSession {
       id
       title
+      isCanceled
       studioID
       studio {
         id
@@ -497,6 +502,7 @@ export const onDeleteSession = /* GraphQL */ `
     onDeleteSession {
       id
       title
+      isCanceled
       studioID
       studio {
         id
