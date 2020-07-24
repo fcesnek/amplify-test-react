@@ -127,6 +127,7 @@ export const createStudio = /* GraphQL */ `
       sessions {
         items {
           id
+          title
           studioID
           coachID
           clientID
@@ -174,6 +175,7 @@ export const updateStudio = /* GraphQL */ `
       sessions {
         items {
           id
+          title
           studioID
           coachID
           clientID
@@ -221,6 +223,7 @@ export const deleteStudio = /* GraphQL */ `
       sessions {
         items {
           id
+          title
           studioID
           coachID
           clientID
@@ -376,6 +379,7 @@ export const createSession = /* GraphQL */ `
   ) {
     createSession(input: $input, condition: $condition) {
       id
+      title
       studioID
       studio {
         id
@@ -403,6 +407,17 @@ export const createSession = /* GraphQL */ `
         username
         email
         userGroup
+        profileInformation {
+          firstName
+          lastName
+          emailAddress
+          contactNumber
+          coachRate
+          cancellationRate
+          about
+          languages
+          skills
+        }
         createdAt
         updatedAt
       }
@@ -412,6 +427,17 @@ export const createSession = /* GraphQL */ `
         username
         email
         userGroup
+        profileInformation {
+          firstName
+          lastName
+          emailAddress
+          contactNumber
+          coachRate
+          cancellationRate
+          about
+          languages
+          skills
+        }
         createdAt
         updatedAt
       }
@@ -441,6 +467,7 @@ export const updateSession = /* GraphQL */ `
   ) {
     updateSession(input: $input, condition: $condition) {
       id
+      title
       studioID
       studio {
         id
@@ -468,6 +495,17 @@ export const updateSession = /* GraphQL */ `
         username
         email
         userGroup
+        profileInformation {
+          firstName
+          lastName
+          emailAddress
+          contactNumber
+          coachRate
+          cancellationRate
+          about
+          languages
+          skills
+        }
         createdAt
         updatedAt
       }
@@ -477,6 +515,17 @@ export const updateSession = /* GraphQL */ `
         username
         email
         userGroup
+        profileInformation {
+          firstName
+          lastName
+          emailAddress
+          contactNumber
+          coachRate
+          cancellationRate
+          about
+          languages
+          skills
+        }
         createdAt
         updatedAt
       }
@@ -506,6 +555,7 @@ export const deleteSession = /* GraphQL */ `
   ) {
     deleteSession(input: $input, condition: $condition) {
       id
+      title
       studioID
       studio {
         id
@@ -533,6 +583,17 @@ export const deleteSession = /* GraphQL */ `
         username
         email
         userGroup
+        profileInformation {
+          firstName
+          lastName
+          emailAddress
+          contactNumber
+          coachRate
+          cancellationRate
+          about
+          languages
+          skills
+        }
         createdAt
         updatedAt
       }
@@ -542,6 +603,17 @@ export const deleteSession = /* GraphQL */ `
         username
         email
         userGroup
+        profileInformation {
+          firstName
+          lastName
+          emailAddress
+          contactNumber
+          coachRate
+          cancellationRate
+          about
+          languages
+          skills
+        }
         createdAt
         updatedAt
       }
@@ -609,6 +681,17 @@ export const createUser = /* GraphQL */ `
           coachPersonality
         }
       }
+      profileInformation {
+        firstName
+        lastName
+        emailAddress
+        contactNumber
+        coachRate
+        cancellationRate
+        about
+        languages
+        skills
+      }
       createdAt
       updatedAt
     }
@@ -659,6 +742,17 @@ export const updateUser = /* GraphQL */ `
           coachPersonality
         }
       }
+      profileInformation {
+        firstName
+        lastName
+        emailAddress
+        contactNumber
+        coachRate
+        cancellationRate
+        about
+        languages
+        skills
+      }
       createdAt
       updatedAt
     }
@@ -708,6 +802,17 @@ export const deleteUser = /* GraphQL */ `
           trainerSex
           coachPersonality
         }
+      }
+      profileInformation {
+        firstName
+        lastName
+        emailAddress
+        contactNumber
+        coachRate
+        cancellationRate
+        about
+        languages
+        skills
       }
       createdAt
       updatedAt

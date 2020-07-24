@@ -1,4 +1,6 @@
 {
+    "identityPoolName": "amplifymygym94c2953b_identitypool_ad021af2",
+    "allowUnauthenticatedIdentities": false,
     "resourceNameTruncated": "amplif94c2953b",
     "userPoolName": "amplifymygym94c2953b_userpool_94c2953b",
     "autoVerifiedAttributes": [
@@ -30,7 +32,7 @@
     "userpoolClientSetAttributes": false,
     "sharedId": "94c2953b",
     "resourceName": "amplifymygym94c2953b",
-    "authSelections": "userPoolOnly",
+    "authSelections": "identityPoolAndUserPool",
     "authRoleArn": {
         "Fn::GetAtt": [
             "AuthRole",
@@ -43,7 +45,7 @@
             "Arn"
         ]
     },
-    "useDefault": "manual",
+    "useDefault": "default",
     "userPoolGroupList": [
         "admin",
         "coach",

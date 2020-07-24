@@ -25,6 +25,7 @@ type Session
   @model
   @key(name: "byStudio", fields: ["studioID"]) {
   id: ID!
+  title: String
   studioID: ID!
   studio: Studio @connection(fields: ["studioID"])
   coachID: ID!
@@ -43,6 +44,19 @@ type User @model {
   email: String!
   userGroup: String!
   intakeFormDetails: IntakeFormDetails
+  profileInformation: ProfileInformation
+}
+
+type ProfileInformation {
+  firstName: String
+  lastName: String
+  emailAddress: String
+  contactNumber: String
+  coachRate: String
+  cancellationRate: String
+  about: String
+  languages: [String]
+  skills: [String]
 }
 
 type IntakeFormDetails {

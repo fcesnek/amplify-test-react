@@ -33,8 +33,20 @@ export default class CreateSessionForm extends React.Component {
   async componentDidMount() {
     try {
       const studiosData = await API.graphql(graphqlOperation(ListStudios))
-      const coachesData = await API.graphql(graphqlOperation(ListUsers))
-      const clientsData = await API.graphql(graphqlOperation(ListUsers))
+      const coachesData = await API.graphql(graphqlOperation(ListUsers, {
+        filter: {
+          userGroup: {
+            eq: "coach"
+          }
+        }
+      }));
+      const clientsData = await API.graphql(graphqlOperation(ListUsers, {
+        filter: {
+          userGroup: {
+            eq: "client"
+          }
+        }
+      }));
       this.setState({
         studios: studiosData.data.listStudios.items,
         coaches: coachesData.data.listUsers.items,
@@ -68,10 +80,10 @@ export default class CreateSessionForm extends React.Component {
   createSession = async() => {
     const { selectedStudio, selectedCoach, selectedClient, topic, start_time, end_time } = this.state;
     const duration = parseInt(Math.abs(end_time.getTime() - start_time.getTime()) / (1000 * 60) % 60);
-    
+    console.log("start time", start_time)
     if (selectedStudio === '' || selectedCoach === '' || selectedClient === '' || topic === '') return
     try {
-      const zoomMeetApiData = (await API.graphql(graphqlOperation(createZoomMeetApi, { topic, start_time, duration }))).data.createZoomMeetApi;
+      const zoomMeetApiData = (await API.graphql(graphqlOperation(createZoomMeetApi, { topic, start_time: start_time.toISOString(), duration }))).data.createZoomMeetApi;
       const zoomMeetData = {
         join_url: zoomMeetApiData.join_url,
         password: zoomMeetApiData.password,
@@ -91,7 +103,7 @@ export default class CreateSessionForm extends React.Component {
     const { zoomMeet } = this.state;
     console.log("zmeet", zoomMeet)
 
-    const session = { studioID: selectedStudio, coachID: selectedCoach, clientID: selectedClient, zoomMeetID: zoomMeet.createZoomMeet.id, start_time, end_time }
+    const session = { title: topic, studioID: selectedStudio, coachID: selectedCoach, clientID: selectedClient, zoomMeetID: zoomMeet.createZoomMeet.id, start_time, end_time }
     console.log("session?", session);
 
     try {
@@ -152,7 +164,7 @@ export default class CreateSessionForm extends React.Component {
           {
             this.state.coaches.map((coach) =>{
               return (
-                <option name='selectedCoach' value={coach.id} key={coach.id}>{coach.name}</option>
+                <option name='selectedCoach' value={coach.id} key={coach.id}>{coach.username}</option>
               );
             })
           }
@@ -169,7 +181,7 @@ export default class CreateSessionForm extends React.Component {
           {
             this.state.clients.map((client) =>{
               return (
-                <option name='selectedClient' value={client.id} key={client.id}>{client.name}</option>
+                <option name='selectedClient' value={client.id} key={client.id}>{client.username}</option>
               );
             })
           }

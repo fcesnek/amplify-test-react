@@ -71,6 +71,7 @@ export const getStudio = /* GraphQL */ `
       sessions {
         items {
           id
+          title
           studioID
           coachID
           clientID
@@ -198,6 +199,7 @@ export const getSession = /* GraphQL */ `
   query GetSession($id: ID!) {
     getSession(id: $id) {
       id
+      title
       studioID
       studio {
         id
@@ -225,6 +227,17 @@ export const getSession = /* GraphQL */ `
         username
         email
         userGroup
+        profileInformation {
+          firstName
+          lastName
+          emailAddress
+          contactNumber
+          coachRate
+          cancellationRate
+          about
+          languages
+          skills
+        }
         createdAt
         updatedAt
       }
@@ -234,6 +247,17 @@ export const getSession = /* GraphQL */ `
         username
         email
         userGroup
+        profileInformation {
+          firstName
+          lastName
+          emailAddress
+          contactNumber
+          coachRate
+          cancellationRate
+          about
+          languages
+          skills
+        }
         createdAt
         updatedAt
       }
@@ -265,11 +289,15 @@ export const listSessions = /* GraphQL */ `
     listSessions(filter: $filter, limit: $limit, nextToken: $nextToken) {
       items {
         id
+        title
         studioID
         studio {
           id
           title
           gymID
+          gym {
+            name
+          }
           createdAt
           updatedAt
         }
@@ -354,6 +382,17 @@ export const getUser = /* GraphQL */ `
           coachPersonality
         }
       }
+      profileInformation {
+        firstName
+        lastName
+        emailAddress
+        contactNumber
+        coachRate
+        cancellationRate
+        about
+        languages
+        skills
+      }
       createdAt
       updatedAt
     }
@@ -371,6 +410,17 @@ export const listUsers = /* GraphQL */ `
         username
         email
         userGroup
+        profileInformation {
+          firstName
+          lastName
+          emailAddress
+          contactNumber
+          coachRate
+          cancellationRate
+          about
+          languages
+          skills
+        }
         createdAt
         updatedAt
       }

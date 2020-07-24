@@ -19,6 +19,7 @@ exports.handler = function (event, _, callback) {
       type: 2,
       start_time,
       duration,
+      timezone: "CET",
       settings: {
         host_video: "true",
         participant_video: "true",

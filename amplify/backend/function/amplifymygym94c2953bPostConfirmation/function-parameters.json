@@ -7,7 +7,7 @@
   "functionName": "amplifymygym94c2953bPostConfirmation",
   "resourceName": "amplifymygym94c2953bPostConfirmation",
   "parentStack": "auth",
-  "triggerEnvs": [],
+  "triggerEnvs": "[]",
   "triggerDir": "/usr/lib/node_modules/@aws-amplify/cli/node_modules/amplify-category-auth/provider-utils/awscloudformation/utils/../triggers/PostConfirmation",
   "triggerTemplate": "PostConfirmation.json.ejs",
   "roleName": "amplifymygym94c2953bPostConfirmation",
@@ -24,5 +24,6 @@
         ]
       }
     }
-  }
+  },
+  "triggerEventPath": "PostConfirmation.event.json"
 }

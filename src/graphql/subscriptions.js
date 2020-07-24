@@ -92,6 +92,7 @@ export const onCreateStudio = /* GraphQL */ `
       sessions {
         items {
           id
+          title
           studioID
           coachID
           clientID
@@ -136,6 +137,7 @@ export const onUpdateStudio = /* GraphQL */ `
       sessions {
         items {
           id
+          title
           studioID
           coachID
           clientID
@@ -180,6 +182,7 @@ export const onDeleteStudio = /* GraphQL */ `
       sessions {
         items {
           id
+          title
           studioID
           coachID
           clientID
@@ -323,6 +326,7 @@ export const onCreateSession = /* GraphQL */ `
   subscription OnCreateSession {
     onCreateSession {
       id
+      title
       studioID
       studio {
         id
@@ -350,6 +354,17 @@ export const onCreateSession = /* GraphQL */ `
         username
         email
         userGroup
+        profileInformation {
+          firstName
+          lastName
+          emailAddress
+          contactNumber
+          coachRate
+          cancellationRate
+          about
+          languages
+          skills
+        }
         createdAt
         updatedAt
       }
@@ -359,6 +374,17 @@ export const onCreateSession = /* GraphQL */ `
         username
         email
         userGroup
+        profileInformation {
+          firstName
+          lastName
+          emailAddress
+          contactNumber
+          coachRate
+          cancellationRate
+          about
+          languages
+          skills
+        }
         createdAt
         updatedAt
       }
@@ -385,6 +411,7 @@ export const onUpdateSession = /* GraphQL */ `
   subscription OnUpdateSession {
     onUpdateSession {
       id
+      title
       studioID
       studio {
         id
@@ -412,6 +439,17 @@ export const onUpdateSession = /* GraphQL */ `
         username
         email
         userGroup
+        profileInformation {
+          firstName
+          lastName
+          emailAddress
+          contactNumber
+          coachRate
+          cancellationRate
+          about
+          languages
+          skills
+        }
         createdAt
         updatedAt
       }
@@ -421,6 +459,17 @@ export const onUpdateSession = /* GraphQL */ `
         username
         email
         userGroup
+        profileInformation {
+          firstName
+          lastName
+          emailAddress
+          contactNumber
+          coachRate
+          cancellationRate
+          about
+          languages
+          skills
+        }
         createdAt
         updatedAt
       }
@@ -447,6 +496,7 @@ export const onDeleteSession = /* GraphQL */ `
   subscription OnDeleteSession {
     onDeleteSession {
       id
+      title
       studioID
       studio {
         id
@@ -474,6 +524,17 @@ export const onDeleteSession = /* GraphQL */ `
         username
         email
         userGroup
+        profileInformation {
+          firstName
+          lastName
+          emailAddress
+          contactNumber
+          coachRate
+          cancellationRate
+          about
+          languages
+          skills
+        }
         createdAt
         updatedAt
       }
@@ -483,6 +544,17 @@ export const onDeleteSession = /* GraphQL */ `
         username
         email
         userGroup
+        profileInformation {
+          firstName
+          lastName
+          emailAddress
+          contactNumber
+          coachRate
+          cancellationRate
+          about
+          languages
+          skills
+        }
         createdAt
         updatedAt
       }
@@ -547,6 +619,17 @@ export const onCreateUser = /* GraphQL */ `
           coachPersonality
         }
       }
+      profileInformation {
+        firstName
+        lastName
+        emailAddress
+        contactNumber
+        coachRate
+        cancellationRate
+        about
+        languages
+        skills
+      }
       createdAt
       updatedAt
     }
@@ -594,6 +677,17 @@ export const onUpdateUser = /* GraphQL */ `
           coachPersonality
         }
       }
+      profileInformation {
+        firstName
+        lastName
+        emailAddress
+        contactNumber
+        coachRate
+        cancellationRate
+        about
+        languages
+        skills
+      }
       createdAt
       updatedAt
     }
@@ -640,6 +734,17 @@ export const onDeleteUser = /* GraphQL */ `
           trainerSex
           coachPersonality
         }
+      }
+      profileInformation {
+        firstName
+        lastName
+        emailAddress
+        contactNumber
+        coachRate
+        cancellationRate
+        about
+        languages
+        skills
       }
       createdAt
       updatedAt
