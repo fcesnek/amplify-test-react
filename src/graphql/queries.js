@@ -247,17 +247,6 @@ export const getSession = /* GraphQL */ `
         username
         email
         userGroup
-        profileInformation {
-          firstName
-          lastName
-          emailAddress
-          contactNumber
-          coachRate
-          cancellationRate
-          about
-          languages
-          skills
-        }
         createdAt
         updatedAt
       }
@@ -307,6 +296,17 @@ export const listSessions = /* GraphQL */ `
           username
           email
           userGroup
+          profileInformation {
+            firstName
+            lastName
+            emailAddress
+            contactNumber
+            coachRate
+            cancellationRate
+            about
+            languages
+            skills
+          }
           createdAt
           updatedAt
         }
@@ -316,6 +316,41 @@ export const listSessions = /* GraphQL */ `
           username
           email
           userGroup
+          intakeFormDetails {
+            personalDetails {
+              fullName
+              dateOfBirth
+              height
+              weight
+              sex
+              phoneNumber
+              email
+              emergencyContactName
+              emergencyContactNumber
+            }
+            exerciseHistory {
+              exerciseImportance
+              weeklyExercise
+              ageOfMostConsistency
+              athleticismLevel
+              exercisePrograms
+              wantedExerciseAchievements
+              confidenceToAchieveGoals
+            }
+            behavioralQuestions {
+              barrierToExercise
+              confidenceToOvercomeBarrier
+              friendAndFamilySupport
+              exerciseImportance
+              motivation
+              resultsExpectation
+            }
+            trainerPreferences {
+              language
+              trainerSex
+              coachPersonality
+            }
+          }
           createdAt
           updatedAt
         }
