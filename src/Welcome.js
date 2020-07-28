@@ -27,6 +27,8 @@ class App extends React.Component {
       const sessionsData = await API.graphql(graphqlOperation(ListSessions));
       const devicesData = await API.graphql(graphqlOperation(listDevices));
       const usersData = await API.graphql(graphqlOperation(listUsers));
+      const test = await API.get("myGymRestApi", "/users", {});
+      console.log("test", test);
       console.log("sessions", sessionsData);
       console.log("users", usersData);
       Auth.currentAuthenticatedUser({

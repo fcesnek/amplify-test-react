@@ -1,0 +1,34 @@
+{
+    "paths": [
+        {
+            "name": "/users",
+            "lambdaFunction": "usersFunction",
+            "privacy": {
+                "open": true
+            }
+        }
+    ],
+    "resourceName": "myGymRestApi",
+    "apiName": "myGymRestApi",
+    "functionArns": [
+        {
+            "lambdaFunction": "usersFunction"
+        }
+    ],
+    "privacy": {
+        "auth": 0,
+        "unauth": 0,
+        "authRoleName": "amplify-amplifymygym-dev-215517-authRole",
+        "unAuthRoleName": "amplify-amplifymygym-dev-215517-unauthRole"
+    },
+    "dependsOn": [
+        {
+            "category": "function",
+            "resourceName": "usersFunction",
+            "attributes": [
+                "Name",
+                "Arn"
+            ]
+        }
+    ]
+}

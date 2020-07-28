@@ -2,7 +2,7 @@ type Gym @model {
   id: ID!
   name: String!
   location: String!
-  studio: [Studio] @connection(keyName: "byGym", fields: ["id"])
+  studio: [Studio!]! @connection(keyName: "byGym", fields: ["id"])
 }
 
 type Studio @model @key(name: "byGym", fields: ["gymID"]) {
@@ -10,8 +10,8 @@ type Studio @model @key(name: "byGym", fields: ["gymID"]) {
   title: String!
   gymID: ID!
   gym: Gym @connection(fields: ["gymID"])
-  devices: [Device] @connection(keyName: "byStudio", fields: ["id"])
-  sessions: [Session] @connection(keyName: "byStudio", fields: ["id"])
+  devices: [Device!]! @connection(keyName: "byStudio", fields: ["id"])
+  sessions: [Session!]! @connection(keyName: "byStudio", fields: ["id"])
 }
 
 type Device @model @key(name: "byStudio", fields: ["studioID"]) {
@@ -56,8 +56,8 @@ type ProfileInformation {
   coachRate: String
   cancellationRate: String
   about: String
-  languages: [String]
-  skills: [String]
+  languages: [String!]!
+  skills: [String!]!
 }
 
 type IntakeFormDetails {
@@ -102,12 +102,13 @@ type ExerciseHistory {
   weeklyExercise: String
   ageOfMostConsistency: Int
   athleticismLevel: Rating
-  exercisePrograms: [String]
-  wantedExerciseAchievements: [String]
+  exercisePrograms: [String!]!
+  wantedExerciseAchievements: [String!]!
   confidenceToAchieveGoals: Rating
 }
 
 enum Rating {
+  NOTHING_SELECTED
   VERY_LOW
   LOW
   MEDIUM
